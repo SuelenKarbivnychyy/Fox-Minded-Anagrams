@@ -39,10 +39,8 @@ def reverse_word(word):
 
             index += 1
             last_index -=1
-
-    return word
-        
-
+    
+    return "".join(word)
 
 
 def anagram(sentence):
@@ -55,14 +53,15 @@ def anagram(sentence):
     for word in words:        
         words_reversed.append(reverse_word(word))        
 
-    # result = " ".join(words_reversed)
-
-    for item in words_reversed:                  
-        for char in item:
-            result += char             
-        result += " "           
+    result = " ".join(words_reversed)           
 
     return result        
 
-print(anagram("a1bcd efg!h"))       
+
+if __name__ == "__main__":
+    test_1 = "a1bcd efg!h"
+    test_2 = "abcd efgh"
+    print(anagram(test_2))
+    print(anagram(test_1))
+      
            
