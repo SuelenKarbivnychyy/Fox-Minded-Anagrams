@@ -17,51 +17,50 @@
 
 
 def reverse_word(word):
-    """Reverse all word of input text and return it""" 
+    """Reverse all alphabetic word of input text and return it"""
 
-    word_lengh = len(word)
-    half_word_index = word_lengh / 2
+    only_alphabetic = []    
 
-    word = list(word)
-    index = 0
-    last_index = word_lengh-1
+    for char in word:
+            if char.isalpha():
+                only_alphabetic.append(char)
 
-    while index < half_word_index:
-        current_item = word[index]
-        last_item = word[last_index]
+    reversed_word_without_special_char = list(reversed(only_alphabetic))
 
-        if not current_item.isalpha():
-            index += 1
-        elif not last_item.isalpha():
-            last_index -=1
-        else:
-            word[index], word[last_index] = last_item, current_item
+    return reversed_word_without_special_char  
 
-            index += 1
-            last_index -=1
-    
-    return "".join(word)
 
 
 def anagram(sentence):
-    """Return the reversed sentence"""       
+    """Return the reversed sentence""" 
 
-    words_reversed = []
-    words = sentence.rsplit(" ")
-    result = ""
-    
-    for word in words:        
-        words_reversed.append(reverse_word(word))        
+    words = sentence.rsplit(" ")    
+    reversed_sentence = []
+    words_count = 0
 
-    result = " ".join(words_reversed)           
+    for word in words:
+        words_count +=1
+        reversed_chars = reverse_word(word)         
 
-    return result        
+        for  item in word:
+            if item.isalpha():                
+                replace_with = reversed_chars.pop(0)
+                reversed_sentence.append(replace_with)
+            else:
+                reversed_sentence.append(item)
+
+        if len(words) != words_count:
+            reversed_sentence.append(" ")
+
+        result = "".join(reversed_sentence)
+
+    return result
 
 
 if __name__ == "__main__":
-    test_1 = "a1bcd efg!h"
+    test_1 = "a1bcd e3fg!h"
     test_2 = "abcd efgh"
     print(anagram(test_2))
     print(anagram(test_1))
-      
-           
+
+
