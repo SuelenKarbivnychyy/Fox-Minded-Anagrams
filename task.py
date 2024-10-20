@@ -42,12 +42,12 @@ def anagram(sentence):
         words_count +=1
         reversed_chars = reverse_word(word)         
 
-        for  item in word:
-            if item.isalpha():                
-                replace_with = reversed_chars.pop(0)
-                reversed_sentence.append(replace_with)
+        for char in word:
+            if char.isalpha():                
+                alphabet_char_to_add = reversed_chars.pop(0)
+                reversed_sentence.append(alphabet_char_to_add)
             else:
-                reversed_sentence.append(item)
+                reversed_sentence.append(char)
 
         if len(words) != words_count:
             reversed_sentence.append(" ")
